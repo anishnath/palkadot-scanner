@@ -31,26 +31,15 @@ const FormControl = () => {
 
   setTimeout(() => {
     setTimeInterval(timeInterval + 1)
-  }, 5000)
+  }, 10000)
 
   useEffect(async () => {
-    const result = await axios('http://localhost:3000/api/lastblock1?websocket=' + websocket)
-    setEnd(result.result[0].result.number)
+    const result = await axios(
+      'http://localhost:3000/api/rpc/chain/getHeader?websocket=' + websocket,
+    )
+    console.log(result.data.result.number)
+    setEnd(result.data.result.number)
   }, [timeInterval])
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/api/lastblock?websocket=' + websocket)
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         console.log(result.result[0].result.number)
-  //         setEnd(result.result[0].result.number)
-  //       },
-  //       (error) => {
-  //         setError('Cant find the end block')
-  //       },
-  //     )
-  // }, [])
 
   function ProgressBar(props) {
     if (isLoaded) {
