@@ -16,7 +16,7 @@ import {
 } from '@coreui/react'
 import BlockDetails from './BlockDetails'
 
-const FormControl = () => {
+const ScanBlock = () => {
   const [validated, setValidated] = useState(false)
   const [start, setStart] = useState(6898275)
   const [end, setEnd] = useState(6898289)
@@ -160,4 +160,4 @@ const FormControl = () => {
   )
 }
 
-export default FormControl
+export default ScanBlock
