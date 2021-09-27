@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require('cors')
+const bcrypt = require('bcrypt')
 const ConfigParser = require('configparser')
 const { ApiPromise, WsProvider } = require('@polkadot/api')
+const bodyParser = require('body-parser')
 
 const substrateRPC = require('./interface/substrate_rpc')
 const substrateQuery = require('./interface/substrate_query')
@@ -39,6 +41,8 @@ async function startPolkadotAPI() {
   const app = express()
   //await app.use(cors(express.json()))
   await app.use(cors({ origin: '*' }))
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json())
   //await app.use(express.json())
 
   // declare a dictionary which will contain all the apis and providers that
@@ -93,6 +97,17 @@ async function startPolkadotAPI() {
     }
   })
 
+  app.post('/api/login', async (req, res) => {
+    console.log('Received request for %s', req.url)
+    console.log(req.body)
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      '$2a$10$uahLxzA/XjHnhPRSrOAYx.1WAhCDLYoDnLJ8hG2kjxLTZFqT4yQAW',
+    )
+    if (!validPassword) return res.status(REQUEST_ERROR_STATUS).send({ error: 'Invalid Password' })
+    res.send('OK')
+  })
+
   app.get('/api/pingNode', async function (req, res) {
     console.log('Received request for %s', req.url)
     try {
@@ -133,50 +148,6 @@ async function startPolkadotAPI() {
         }
       }
       return res.status(REQUEST_SUCCESS_STATUS).send({ result: websocket_api_list })
-    } catch (e) {
-      return res.status(REQUEST_ERROR_STATUS).send({ error: e.toString() })
-    }
-  })
-
-  app.get('/api/lastblock1', async function (req, res) {
-    console.log('Received request for %s', req.url)
-    try {
-      // extract the web socket passed in the query
-      const websocket = req.query.websocket
-
-      // check whether an api has been connected for that websocket
-      if (websocket in apiProviderDict) {
-        const apiResult = await substrateRPC.rpcAPI(
-          apiProviderDict[websocket].api,
-          'chain/getFinalizedHead',
-        )
-        if ('result' in apiResult) {
-          const blockHashResult = await substrateRPC.rpcAPI(
-            apiProviderDict[websocket].api,
-            'chain/getHeader',
-            apiResult.result,
-          )
-          if ('result' in blockHashResult) {
-            //console.log('Returning..', blockHashResult)
-            return blockHashResult
-          } else {
-            if (apiProviderDict[websocket].provider.isConnected) {
-              return blockHashResult
-            } else {
-              return res.status(REQUEST_ERROR_STATUS).send({ error: 'Lost connection with node.' })
-            }
-          }
-        } else {
-          if (apiProviderDict[websocket].provider.isConnected) {
-            console.log("1--"  + apiResult.result)
-          } else {
-            return res.status(REQUEST_ERROR_STATUS).send({ error: 'Lost connection with node.' })
-          }
-        }
-      } else {
-        return res.status(REQUEST_ERROR_STATUS).send(errorNeedToSetUpAPIMsg(websocket))
-      }
-      return res.status(REQUEST_SUCCESS_STATUS).send({ result: return_list })
     } catch (e) {
       return res.status(REQUEST_ERROR_STATUS).send({ error: e.toString() })
     }

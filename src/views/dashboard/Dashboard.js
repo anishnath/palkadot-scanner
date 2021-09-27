@@ -14,7 +14,6 @@ import {
   CRow,
   CSpinner,
 } from '@coreui/react'
-import { DocsCallout } from 'src/components'
 import BlockDetails from './BlockDetails'
 
 const FormControl = () => {
@@ -25,13 +24,11 @@ const FormControl = () => {
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [data, setData] = useState([])
-  const [seconds, setSeconds] = useState(0)
-  const [isActive, setIsActive] = useState(false)
   const [timeInterval, setTimeInterval] = useState(0)
 
   setTimeout(() => {
     setTimeInterval(timeInterval + 1)
-  }, 10000)
+  }, 20000)
 
   useEffect(async () => {
     const result = await axios(
