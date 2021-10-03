@@ -4,7 +4,7 @@ import requests
 API_ENDPOINT: str = "http://localhost:3000"
 # API_ENDPOINT: str = "http://5.6.7.8:3000"
 
-websocket: str = 'ws://1.2.3.4:9944'
+websocket: str = ' wss://rpc.polkadot.io'
 
 # Miscellaneous Endpoints
 print('Miscellaneous Endpoints:')
@@ -32,7 +32,19 @@ print('/api/rpc/chain/getBlockHash')
 r = requests.get(url=API_ENDPOINT + '/api/rpc/chain/getBlockHash',
                  params={'websocket': websocket})
 print(r.text)
-r = requests.get(url=API_ENDPOINT + '/api/rpc/chain/getBlockHash',
-                 params={'websocket': websocket,
-                         'block_number': '36430'})
+
+print('/api/login')
+payload='password=palkadot&username=palkadot'
+headers = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+}
+r = requests.request("POST", url, headers=headers, data=payload)
+print(r.text)
+
+print('/api/scan/chain?websocket=wss://rpc.polkadot.io&start_block=6908228&end_block=6908230')
+url = "http://localhost:3000/api/scan/chain?websocket=wss://rpc.polkadot.io&start_block=6908228&end_block=6908230"
+
+payload={}
+headers = {}
+r = requests.request("GET", url, headers=headers, data=payload)
 print(r.text)
