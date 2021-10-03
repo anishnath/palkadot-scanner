@@ -1,3 +1,11 @@
+import { createContext, useContext } from 'react'
+
+const authContext = createContext()
+
+function useAuth() {
+  return useContext(authContext)
+}
+
 const Auth = {
   isAuthenticated: false,
   authenticate() {

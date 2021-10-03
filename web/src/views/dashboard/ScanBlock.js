@@ -15,8 +15,9 @@ import {
   CSpinner,
 } from '@coreui/react'
 import BlockDetails from './BlockDetails'
+import Auth from '../../Auth/Auth'
 
-const ScanBlock = () => {
+const ScanBlock = (props) => {
   const [validated, setValidated] = useState(false)
   const [start, setStart] = useState(6898275)
   const [end, setEnd] = useState(6898289)
@@ -25,6 +26,10 @@ const ScanBlock = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [data, setData] = useState([])
   const [timeInterval, setTimeInterval] = useState(0)
+
+  if (!Auth.isAuthenticated) {
+    props.history.push('/login')
+  }
 
   setTimeout(() => {
     setTimeInterval(timeInterval + 1)

@@ -192,10 +192,9 @@ async function startPolkadotAPI() {
               }
             }
           } else {
-            if (apiProviderDict[websocket].provider.isConnected) {
-              console.log(apiResult.result)
-            } else {
-              return res.status(REQUEST_ERROR_STATUS).send({ error: 'Lost connection with node.' })
+            if (!apiProviderDict[websocket].provider.isConnected) {
+              startListen(websocket)
+              return res.status(REQUEST_ERROR_STATUS).send({ error: 'Lost connection with node. Reconnecting' })
             }
           }
         } else {

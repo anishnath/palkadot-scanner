@@ -7,7 +7,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Scan Blocks',
-    to: '/dashboard',
+    to: '/scanblock',
     icon: <CIcon icon={cilSearch} customClassName="nav-icon" />,
     badge: {
       color: 'info',

@@ -18,12 +18,15 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import axios from 'axios'
 import qs from 'qs'
 import Auth from '../../../Auth/Auth'
+import { Redirect } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
   const [validated, setValidated] = useState(false)
   const [error, setError] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  console.log(props)
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -66,6 +69,7 @@ const Login = () => {
       },
       data: data,
     }
+    console.log(Auth.isAuthenticated)
 
     axios(config)
       .then(function (response) {
@@ -74,6 +78,7 @@ const Login = () => {
         //store.set('loggedIn', true)
         // eslint-disable-next-line no-restricted-globals
         Auth.authenticate()
+        props.history.push('/scanblock')
       })
       .catch(function (error) {
         setError('Invalid User Name and Password')
