@@ -6,8 +6,6 @@ const { ApiPromise, WsProvider } = require('@polkadot/api')
 const bodyParser = require('body-parser')
 
 const substrateRPC = require('./interface/substrate_rpc')
-const substrateQuery = require('./interface/substrate_query')
-const substrateDerive = require('./interface/substrate_derive')
 const timeoutUtils = require('./utils/timeout')
 
 const TIMEOUT_TIME_MS = 10000
