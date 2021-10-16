@@ -97,7 +97,19 @@ async function startPolkadotAPI() {
 
   app.post('/api/login', async (req, res) => {
     console.log('Received request for %s', req.url)
-    console.log(req.body)
+    if ( typeof req.body.username !== 'undefined' && req.body.username ){
+      const username = req.body.username
+      if ('palkadot' !== username) {
+        return res.status(REQUEST_ERROR_STATUS).send({ error: 'Invalid Username' })
+      }
+    }else {
+      return res.status(REQUEST_ERROR_STATUS).send({ error: 'Invalid Username' })
+    }
+
+    if ( typeof req.body.password === 'undefined'){
+      return res.status(REQUEST_ERROR_STATUS).send({ error: 'Invalid Password' })
+    }
+
     const validPassword = await bcrypt.compare(
       req.body.password,
       '$2a$10$uahLxzA/XjHnhPRSrOAYx.1WAhCDLYoDnLJ8hG2kjxLTZFqT4yQAW',

@@ -4,17 +4,17 @@
   "description": "API Server for Polkadot using WebSockets in JS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SimplyVC/polkadot_api_server.git"
+    "url": "https://github.com/anishnath/palkadot-scanner.git"
   },
   "main": "server.js",
   "scripts": {
     "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1"
   },
-  "author": "Daniel Magro",
+  "author": "Anish",
   "license": "Apache-2.0",
   "dependencies": {
-    "@polkadot/api": "^5.1.1",
-    "@polkadot/api-derive": "^5.1.1",
+    "@polkadot/api": "^6.3.1",
+    "@polkadot/api-derive": "^6.3.1",
     "await-timeout": "^1.1.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
