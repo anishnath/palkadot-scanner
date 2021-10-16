@@ -59,10 +59,13 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "2.4.1",
     "react-scripts": "^4.0.3",
-    "sass": "^1.41.1"
+    "sass": "^1.41.1",
+    "dotenv": "^10.0.0",
+    "env-cmd" : "^10.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-docker": "REACT_APP_STAGE=docker-compose react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint \"src/**/*.js\"",
     "test": "react-scripts test",

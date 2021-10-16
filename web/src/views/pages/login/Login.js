@@ -18,7 +18,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import axios from 'axios'
 import qs from 'qs'
 import Auth from '../../../Auth/Auth'
-import { Redirect } from 'react-router-dom'
+import config from '../../../config/config'
 
 const Login = (props) => {
   const [validated, setValidated] = useState(false)
@@ -26,7 +26,7 @@ const Login = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  console.log(props)
+  //console.log(props)
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -43,7 +43,6 @@ const Login = (props) => {
   }
 
   const handleSubmit = (event) => {
-    const bodyFormData = new FormData()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
@@ -61,17 +60,19 @@ const Login = (props) => {
       username: username,
     })
 
-    const config = {
+    const c = {
       method: 'post',
-      url: 'http://localhost:3000/api/login',
+      url: config.apiGateway.URL + '/api/login',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       data: data,
     }
-    console.log(Auth.isAuthenticated)
+    // console.log(Auth.isAuthenticated)
+    // console.log(config.apiGateway.URL)
+    // console.log(config)
 
-    axios(config)
+    axios(c)
       .then(function (response) {
         setError(null)
         console.log(JSON.stringify(response.data))

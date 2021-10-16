@@ -16,6 +16,7 @@ import {
 } from '@coreui/react'
 import BlockDetails from './BlockDetails'
 import Auth from '../../Auth/Auth'
+import config from '../../config/config'
 
 const ScanBlock = (props) => {
   const [validated, setValidated] = useState(false)
@@ -37,7 +38,7 @@ const ScanBlock = (props) => {
 
   useEffect(async () => {
     const result = await axios(
-      'http://localhost:3000/api/rpc/chain/getHeader?websocket=' + websocket,
+      config.apiGateway.URL + '/api/rpc/chain/getHeader?websocket=' + websocket,
     )
     console.log(result.data.result.number)
     setEnd(result.data.result.number)

@@ -1,8 +1,5 @@
 import React, { Component, createContext, useContext } from 'react'
-import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
-import ScanBlock from './views/dashboard/ScanBlock'
-import Auth from './Auth/Auth'
 import Router from './Router'
 
 const loading = (
