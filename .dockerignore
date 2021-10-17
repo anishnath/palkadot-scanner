@@ -1,0 +1,4 @@
+__pycache__
+node_modules
+web/node_modules
+api-server/node_modules

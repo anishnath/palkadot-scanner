@@ -1,13 +1,22 @@
 {
-  "name": "palkadot basic scan scanner",
-  "description": "palkadot basic scanner",
-  "version": "1",
+  "name": "palkadot-scan",
+  "description": "Palkadot mini scanner",
+  "version": "4.0.0-rc.1",
+  "config": {
+    "coreui_library_short_version": "4.0"
+  },
   "author": {
     "name": "Anish",
-    "url": "git@github.com:anishnath/palkadot-scanner.git",
-    "github": "git@github.com:anishnath/palkadot-scanner.git",
+    "url": "https://8gwifi.org",
+    "github": "git@github.com:anishnath/palkadot-scanner.gi",
     "twitter": "https://twitter.com/anish2good"
   },
+  "contributors": [
+    {
+      "name": "Anish",
+      "url": "git@github.com:anishnath/palkadot-scanner.git"
+    }
+  ],
   "homepage": ".",
   "copyright": "",
   "license": "MIT",

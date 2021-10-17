@@ -1,13 +1,23 @@
-FROM node:12.18.1
-ENV NODE_ENV=production
+FROM node:14
 
-WORKDIR /web
+# Create app directory
+WORKDIR palkadot-scanner
 
-COPY ["package.json", "package-lock.json*", "./"]
-
-RUN npm install --production
-
+# Bundle app source
 COPY . .
 
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN pwd && \
+    ls -ltr && \
+    cd web && \
+    npm i && \
+    cd .. && \
+    ls -ltr && \
+    cd api-server && \
+    pwd && \
+    ls -ltr && \
+    npm i
+
+EXPOSE 3000
+EXPOSE 3001
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["$@"]
