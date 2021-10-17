@@ -11,5 +11,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 3001
-CMD [ "start-docker" ]
+CMD [ "start" ]
 ENTRYPOINT ["yarn"]
