@@ -2,46 +2,60 @@
 
 - Clone the repo: `https://github.com/anishnath/palkadot-scanner.git`
 
-### Instalation
+### Installation
 
-``` bash
-$ npm install
-```
 
-or
+``` bash  
+services:  
+  web:  
+    container_name: web  
+    deploy:  
+      replicas: 1  
+      restart_policy:  
+        condition: any  
+    expose:  
+      - 3001  
+    ports:  
+      - 3001:3001  
+    image: anishnath/palkadot-scan-web  
+    links:  
+      - api  
+  api:  
+    container_name: api  
+    deploy:  
+      replicas: 1  
+      restart_policy:  
+        condition: any  
+    expose:  
+      - 3000  
+    ports:  
+      - 3000:3000  
+    image: anishnath/palkadot-scan-api  
+version: '3'
+```  
 
-``` bash
-$ yarn install
-```
+And
 
-### Basic usage
+``` bash  
+$ docker-compose up     
+```  
 
-``` bash
-# dev server with hot reload at http://localhost:3000
-$ npm start
-```
+### Basic usage  Web
 
-or 
-
-``` bash
-# dev server with hot reload at http://localhost:3000
+``` bash  
+$ cd web
 $ yarn start
-```
+```  
+
 
 Navigate to [http://localhost:3001](http://localhost:3001). The app will automatically reload if you change any of the source files.
 
-#### Build
+#### Basic usage  API
 
-Run `build` to build the project. The build artifacts will be stored in the `build/` directory.
 
-```bash
-# build for production with minification
-$ npm run build
-```
+```bash  
+$ cd api-server/src 
+$  node server.js  
+```  
 
-or
-
-```bash
-# build for production with minification
-$ yarn build
-```
+Navigate to [http://localhost:3000](http://localhost:3001) for the API server

@@ -23,6 +23,4 @@ services:
     ports:
       - 3000:3000
     image: anishnath/palkadot-scan-api
-    labels:
-      generated: by 8gwifi.org
 version: '3'

@@ -1,29 +1,20 @@
 {
-  "name": "@coreui/coreui-free-react-admin-template",
-  "description": "CoreUI Free React Admin Template",
-  "version": "4.0.0-rc.1",
-  "config": {
-    "coreui_library_short_version": "4.0"
-  },
+  "name": "palkadot basic scan scanner",
+  "description": "palkadot basic scanner",
+  "version": "1",
   "author": {
-    "name": "CoreUI",
-    "url": "https://coreui.io",
-    "github": "https://github.com/coreui",
-    "twitter": "https://twitter.com/core_ui"
+    "name": "Anish",
+    "url": "git@github.com:anishnath/palkadot-scanner.git",
+    "github": "git@github.com:anishnath/palkadot-scanner.git",
+    "twitter": "https://twitter.com/anish2good"
   },
-  "contributors": [
-    {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
-    }
-  ],
   "homepage": ".",
-  "copyright": "Copyright 2017-2021 creativeLabs Łukasz Holeczek",
+  "copyright": "",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
+    "url": "git@github.com:anishnath/palkadot-scanner.git"
   },
   "dependencies": {
     "@coreui/chartjs": "3.0.0",
